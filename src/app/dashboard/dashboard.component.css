@@ -1,0 +1,141 @@
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  background-image: url("../../assets/bground.png");
+  background-size: cover;
+  background-position: center;
+}
+
+.sidebar {
+  width: 20%;
+  background-color: #172148;
+  color: #ffffff;
+  padding: 20px;
+}
+
+.user-profile {
+  text-align: center;
+  /* Add your user profile styles here */
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.sentence-builder {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+}
+
+.word-types {
+  background-color: #09b4c7;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.word-types h3 {
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.word-types ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.word-types li {
+  margin-bottom: 10px;
+}
+
+.word-types button {
+  background-color: #ef3f26;
+  color: #ffffff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.selected-words {
+  background-color: #f5bb2e;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.selected-words h3 {
+  font-size: 18px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+.selected-words ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.selected-words li {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.selected-words span:first-child {
+  font-weight: bold;
+  margin-right: 8px;
+}
+
+.preview-sentence {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.preview-sentence h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.preview-sentence p {
+  font-size: 16px;
+  color: #666;
+}
+
+.final-sentence {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.final-sentence h3 {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.final-sentence p {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: flex-end;
+}

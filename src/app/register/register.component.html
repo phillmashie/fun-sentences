@@ -1,0 +1,51 @@
+<div class="registration-container">
+  <div class="registration-card">
+    <div class="registration-card-content">
+      <div class="logo-container">
+        <!-- <img src="../../assets/Group 144.png" alt="Logo" class="logo-img"> -->
+      </div>
+      <form class="registration-form" #registerForm="ngForm">
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Full Name"
+            [(ngModel)]="fullname"
+            name="fullname"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            placeholder="Username"
+            [(ngModel)]="username"
+            name="username"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field>
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            [(ngModel)]="password"
+            name="password"
+            required
+          />
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          class="register-button"
+          (click)="register()"
+          [disabled]="!registerForm.valid"
+        >
+          Register
+        </button>
+      </form>
+      <div class="login-link">
+        Already have an account? <a routerLink="/login">Login</a>
+      </div>
+    </div>
+  </div>
+</div>

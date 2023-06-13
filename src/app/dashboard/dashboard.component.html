@@ -1,0 +1,43 @@
+<div class="dashboard-container">
+  <div class="sidebar">
+    <div class="user-profile">
+      <!-- User profile content goes here -->
+    </div>
+  </div>
+  <div class="main-content">
+    <h2>Create Sentences</h2>
+    <div class="sentence-builder">
+      <div class="word-types">
+        <h3>Word Types</h3>
+        <ul>
+          <li *ngFor="let wordType of wordTypes">
+            <button (click)="selectWord(wordType.name)">
+              {{ wordType.name }}
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="selected-words">
+        <h3>Selected Words</h3>
+        <ul>
+          <li *ngFor="let wordType of wordTypes">
+            <span>{{ wordType.name }}:</span>
+            <span>{{ selectedWords[wordType.name] }}</span>
+          </li>
+        </ul>
+      </div>
+      <div class="preview-sentence">
+        <h3>Preview Sentence</h3>
+        <p>{{ getPreviewSentence() }}</p>
+      </div>
+    </div>
+    <div class="sentence-actions">
+      <button (click)="addWordToSentence()">Add Word</button>
+      <button (click)="submitSentence()">Submit Sentence</button>
+    </div>
+    <div class="final-sentence">
+      <h3>Final Sentence</h3>
+      <p>{{ sentence }}</p>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,40 @@
 /* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+:root {
+  --primary: #172148;
+  --accent: #09b4c7;
+  --warn: #ef3f26;
+  --background: #f5bb2e;
+  --text: #ffffff;
+}
+
+/* Override Angular Material classes with customized colors */
+.mat-primary,
+.mat-accent,
+.mat-warn {
+  color: var(--text) !important;
+}
+
+.mat-primary {
+  background-color: var(--primary) !important;
+}
+
+.mat-accent {
+  background-color: var(--accent) !important;
+}
+
+.mat-warn {
+  background-color: var(--warn) !important;
+}
+
+.mat-background {
+  background-color: var(--background) !important;
+}
