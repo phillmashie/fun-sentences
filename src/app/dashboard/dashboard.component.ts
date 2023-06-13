@@ -56,8 +56,21 @@ export class DashboardComponent implements OnInit {
   }
 
   submitSentence() {
-    // Implement the method to submit the sentence to the backend
-    console.log(this.sentence);
+    // Check if there is a sentence to submit
+    if (this.sentence) {
+      // Call the submitSentence() method of the WordService to send the sentence to the backend
+      this.wordService.submitSentence(this.sentence).subscribe(
+        (response) => {
+          // Handle the response from the backend if needed
+          console.log('Sentence submitted successfully:', response);
+        },
+        (error) => {
+          // Handle the error if the submission fails
+          console.error('Error submitting sentence:', error);
+        }
+      );
+    }
+
     // Reset the selectedWords and sentence
     this.selectedWords = {};
     this.sentence = '';
