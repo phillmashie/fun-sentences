@@ -11,18 +11,23 @@ export class WordService {
   constructor(private http: HttpClient) {}
 
   getWordTypes(): Observable<WordType[]> {
-    const url = `${this.baseUrl}/word-types`;
+    const url = `${this.baseUrl}/sentences/word-types`;
     return this.http.get<WordType[]>(url);
   }
 
   getWordsByType(wordType: string): Observable<string[]> {
-    const url = `${this.baseUrl}/words?type=${wordType}`;
+    const url = `${this.baseUrl}/sentences/words?type=${wordType}`;
     return this.http.get<string[]>(url);
   }
 
   submitSentence(sentence: string): Observable<any> {
-    const url = `${this.baseUrl}/sentences`;
+    const url = `${this.baseUrl}/sentences/sentences`;
     return this.http.post(url, { sentence });
+  }
+
+  getSentences(): Observable<string[]> {
+    const url = `${this.baseUrl}/sentences/sentences`;
+    return this.http.get<string[]>(url);
   }
 }
 

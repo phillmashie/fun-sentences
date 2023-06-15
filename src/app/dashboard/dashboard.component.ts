@@ -1,10 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { UserService } from '../user.service';
 import { WordService } from '../word.service';
+import { catchError } from 'rxjs/operators';
 
 interface WordType {
   id: number;
   name: string;
+}
+
+interface Sentence {
+  id: number;
+  sentence: string;
 }
 
 @Component({
@@ -13,14 +20,52 @@ interface WordType {
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
+  userProfile: any;
+  avatarUrl: string = '';
   wordTypes: WordType[] = [];
   selectedWords: { [key: string]: string } = {};
   sentence: string = '';
+  sentences: any[] = [];
 
-  constructor(private wordService: WordService) {}
+  constructor(
+    private wordService: WordService,
+    private userService: UserService
+  ) {}
 
   ngOnInit() {
     this.fetchWordTypes();
+    this.getSentences();
+    this.getUserProfile();
+  }
+
+  getUserProfile() {
+    this.userService.getUserProfile().subscribe(
+      (response: any) => {
+        this.userProfile = response;
+        this.generateAvatarUrl();
+      },
+      (error: any) => {
+        console.error('Failed to retrieve user profile', error);
+      }
+    );
+  }
+
+  generateAvatarUrl() {
+    // Use a random identifier for the avatar from 1 to 1000
+    const randomId = Math.floor(Math.random() * 1000) + 1;
+    this.avatarUrl = `https://robohash.org/${randomId}?set=set2&size=150x150`;
+  }
+
+  getSentences() {
+    this.wordService.getSentences().subscribe(
+      (sentences: string[]) => {
+        // Change the type to string[]
+        this.sentences = sentences;
+      },
+      (error: any) => {
+        console.error('Error retrieving sentences:', error);
+      }
+    );
   }
 
   fetchWordTypes() {
@@ -40,11 +85,11 @@ export class DashboardComponent implements OnInit {
     return sentenceParts.join(' ');
   }
 
-  selectWord(wordType: string) {
-    this.getWordsByType(wordType).subscribe((wordsByType: string[]) => {
+  selectWord(wordType: WordType) {
+    this.getWordsByType(wordType.name).subscribe((wordsByType: any[]) => {
       const randomIndex = Math.floor(Math.random() * wordsByType.length);
-      const selectedWord = wordsByType[randomIndex];
-      this.selectedWords[wordType] = selectedWord;
+      const selectedWord = wordsByType[randomIndex].word; // Extract the 'word' property
+      this.selectedWords[wordType.name] = selectedWord;
     });
   }
 

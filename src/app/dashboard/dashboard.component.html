@@ -1,9 +1,16 @@
 <div class="dashboard-container">
   <div class="sidebar">
     <div class="user-profile">
-      <!-- User profile content goes here -->
+      <div class="avatar">
+        <img [src]="avatarUrl" alt="User Avatar" />
+      </div>
+      <div class="user-info">
+        <h3 class="welcome-message">Welcome, {{ userProfile?.username }}</h3>
+        <p class="fullname">Fullname: {{ userProfile?.fullname }}</p>
+      </div>
     </div>
   </div>
+
   <div class="main-content">
     <h2>Create Sentences</h2>
     <div class="sentence-builder">
@@ -11,12 +18,13 @@
         <h3>Word Types</h3>
         <ul>
           <li *ngFor="let wordType of wordTypes">
-            <button (click)="selectWord(wordType.name)">
+            <button (click)="selectWord(wordType)">
               {{ wordType.name }}
             </button>
           </li>
         </ul>
       </div>
+
       <div class="selected-words">
         <h3>Selected Words</h3>
         <ul>
@@ -26,6 +34,7 @@
           </li>
         </ul>
       </div>
+
       <div class="preview-sentence">
         <h3>Preview Sentence</h3>
         <p>{{ getPreviewSentence() }}</p>
@@ -35,9 +44,17 @@
       <button (click)="addWordToSentence()">Add Word</button>
       <button (click)="submitSentence()">Submit Sentence</button>
     </div>
-    <div class="final-sentence">
-      <h3>Final Sentence</h3>
-      <p>{{ sentence }}</p>
+    <div class="sentence-sections">
+      <div class="final-sentence">
+        <h3>Final Sentence</h3>
+        <p>{{ sentence }}</p>
+      </div>
+      <div class="all-sentences">
+        <h3>All Sentences</h3>
+        <ul>
+          <li *ngFor="let sentence of sentences">{{ sentence.sentence }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

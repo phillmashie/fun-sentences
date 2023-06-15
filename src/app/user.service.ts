@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { catchError } from 'rxjs/operators';
 })
 export class UserService {
   private baseUrl = 'http://localhost:3000'; // Replace with your actual API base URL
+  private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +18,7 @@ export class UserService {
       password: password,
     };
 
-    const loginUrl = `${this.baseUrl}/api/login`;
+    const loginUrl = `${this.baseUrl}/user/login`;
 
     return this.http.post(loginUrl, loginData).pipe(
       catchError((error) => {
@@ -27,7 +28,20 @@ export class UserService {
   }
 
   registerUser(userData: any): Observable<any> {
-    const url = `${this.baseUrl}/register`; // Replace with your registration API endpoint
+    const url = `${this.baseUrl}/user/register`; // Replace with your registration API endpoint
     return this.http.post(url, userData);
+  }
+
+  isAuthenticated(): Observable<boolean> {
+    return this.isAuthenticatedSubject.asObservable();
+  }
+
+  setAuthenticationState(isAuthenticated: boolean): void {
+    this.isAuthenticatedSubject.next(isAuthenticated);
+  }
+
+  getUserProfile(): Observable<any> {
+    const url = `${this.baseUrl}/user/profile`; // Replace with the actual endpoint to retrieve user profile
+    return this.http.get<any>(url);
   }
 }
