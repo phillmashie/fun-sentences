@@ -80,6 +80,18 @@ h2 {
   color: #ffffff;
   margin-bottom: 10px;
 }
+.selected-words button {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.selected-words button:hover {
+  background-color: #d32f2f;
+}
 
 .selected-words ul {
   list-style-type: none;

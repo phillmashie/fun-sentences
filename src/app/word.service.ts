@@ -1,6 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+
+interface Sentence {
+  id: number;
+  sentence: string;
+}
+
+interface WordType {
+  id: number;
+  name: string;
+}
 
 @Injectable({
   providedIn: 'root',
@@ -24,14 +35,14 @@ export class WordService {
     const url = `${this.baseUrl}/sentences/sentences`;
     return this.http.post(url, { sentence });
   }
-
   getSentences(): Observable<string[]> {
     const url = `${this.baseUrl}/sentences/sentences`;
-    return this.http.get<string[]>(url);
+    return this.http
+      .get<Sentence[]>(url)
+      .pipe(
+        map((sentences: Sentence[]) =>
+          sentences.map((sentence) => sentence.sentence)
+        )
+      );
   }
-}
-
-interface WordType {
-  id: number;
-  name: string;
 }

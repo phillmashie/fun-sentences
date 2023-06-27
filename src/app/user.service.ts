@@ -7,11 +7,13 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class UserService {
-  private baseUrl = 'http://localhost:3000'; // Replace with your actual API base URL
+  // Base Url
+  private baseUrl = 'http://localhost:3000';
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {}
 
+  // Login logic
   login(username: string, password: string): Observable<any> {
     const loginData = {
       username: username,
@@ -22,13 +24,14 @@ export class UserService {
 
     return this.http.post(loginUrl, loginData).pipe(
       catchError((error) => {
-        throw error; // Handle error as per your application's needs
+        throw error;
       })
     );
   }
 
+  // Registration logic
   registerUser(userData: any): Observable<any> {
-    const url = `${this.baseUrl}/user/register`; // Replace with your registration API endpoint
+    const url = `${this.baseUrl}/user/register`;
     return this.http.post(url, userData);
   }
 
@@ -40,8 +43,9 @@ export class UserService {
     this.isAuthenticatedSubject.next(isAuthenticated);
   }
 
+  // User Profile
   getUserProfile(): Observable<any> {
-    const url = `${this.baseUrl}/user/profile`; // Replace with the actual endpoint to retrieve user profile
+    const url = `${this.baseUrl}/user/profile`;
     return this.http.get<any>(url);
   }
 }

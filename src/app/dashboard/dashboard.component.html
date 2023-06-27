@@ -6,16 +6,16 @@
       </div>
       <div class="user-info">
         <h3 class="welcome-message">Welcome, {{ userProfile?.username }}</h3>
-        <p class="fullname">Fullname: {{ userProfile?.fullname }}</p>
+        <!-- <p class="fullname">Fullname: {{ userProfile?.fullName }}</p> -->
       </div>
     </div>
   </div>
 
   <div class="main-content">
-    <h2>Create Sentences</h2>
+    <h2>Play a Game of Creating Sentences</h2>
     <div class="sentence-builder">
       <div class="word-types">
-        <h3>Word Types</h3>
+        <h3>Pick a Word from Word Types</h3>
         <ul>
           <li *ngFor="let wordType of wordTypes">
             <button (click)="selectWord(wordType)">
@@ -25,12 +25,13 @@
         </ul>
       </div>
 
+      <!-- Display the selected words -->
       <div class="selected-words">
-        <h3>Selected Words</h3>
+        <h3>Selected Words:</h3>
         <ul>
           <li *ngFor="let wordType of wordTypes">
-            <span>{{ wordType.name }}:</span>
-            <span>{{ selectedWords[wordType.name] }}</span>
+            {{ wordType.name }}: {{ selectedWords[wordType.name] }}
+            <button (click)="removeWord(wordType)">Remove</button>
           </li>
         </ul>
       </div>
@@ -52,7 +53,7 @@
       <div class="all-sentences">
         <h3>All Sentences</h3>
         <ul>
-          <li *ngFor="let sentence of sentences">{{ sentence.sentence }}</li>
+          <li *ngFor="let sentence of sentences">{{ sentence }}</li>
         </ul>
       </div>
     </div>
